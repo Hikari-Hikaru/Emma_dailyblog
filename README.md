@@ -93,17 +93,17 @@
     </h2>
   </header>
 
-  <main>
-    <p style="text-align:center;">
-      Today was the entrance ceremony for high school.<br>
-      I was born in Japan, but since my parents grew up in U.S.A.,<br><br>
-      I stood out in a strange way from the perspective of Japanese people,<br>
-      and it was a bit embarrassing.
-    </p>
+ <main>
+  <p style="text-align:center;">
+    Today was the entrance ceremony for high school.<br>
+    I was born in Japan, but since my parents grew up in U.S.A.,<br><br>
+    I stood out in a strange way from the perspective of Japanese people,<br>
+    and it was a bit embarrassing.
+  </p>
 
-    <!-- ダイイングメッセージ表示 -->
-    <div id="emma-message"></div>
-  </main>
+  <!-- ダイイングメッセージ表示 -->
+  <div id="emma-message"></div>
+</main>
 
   <!-- ▼ ブログ一覧 -->
   <h2>ブログ一覧</h2>
