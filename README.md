@@ -4,6 +4,7 @@
   <meta charset="UTF-8">
   <title>2025年4月5日 - </title>
   <link rel="stylesheet" href="../style.css">
+
   <style>
     body {
       background-color: #ffe4e1;
@@ -46,11 +47,9 @@
       50% { color: #ff69b4; }
     }
 
-    #please-message {
-      display: flex;
-      justify-content: center;
-      gap: 5px;
-      margin-top: 30px;
+    #emma-message {
+      margin-top: 40px;
+      text-align: center;
     }
 
     .letter {
@@ -59,6 +58,13 @@
       opacity: 0;
       transform: translateY(-20px) rotate(0deg);
       animation: glitchDrop 0.8s ease-in-out forwards;
+      margin: 5px 0;
+    }
+
+    .letter:last-child {
+      color: red;
+      font-weight: bold;
+      font-size: 1.8em;
     }
 
     @keyframes glitchDrop {
@@ -76,29 +82,30 @@
     }
   </style>
 </head>
+
 <body>
   <header>
     <h1>2025_04_05</h1>
-    <h2>Not everything is what it seems.</h2>
+    <h2>
+      <a href="#" id="secretTrigger" class="secret-link">
+        Not everything is what it seems.
+      </a>
+    </h2>
   </header>
 
   <main>
-    <p>
+    <p style="text-align:center;">
       Today was the entrance ceremony for high school.<br>
       I was born in Japan, but since my parents grew up in U.S.A.,<br><br>
       I stood out in a strange way from the perspective of Japanese people,<br>
-      and it was a bit embarrassing.<br><br>
-      I even saw a tiny pink dot on the page. Maybe it's nothing.
-
-      <!-- ▼ 秘密のリンク（点滅ドット） -->
-      <a href="javascript:void(0)" class="secret-link" id="secretDot">.</a>
+      and it was a bit embarrassing.
     </p>
 
-    <!-- ▼ 崩れる「Please...」メッセージ -->
-    <div id="please-message"></div>
+    <!-- ダイイングメッセージ表示 -->
+    <div id="emma-message"></div>
   </main>
 
-  <!-- ▼ 日付別リンク ▼ -->
+  <!-- ▼ ブログ一覧 -->
   <h2>ブログ一覧</h2>
   <ul>
     <li><a href="https://hikari-hikaru.github.io/Emma_dailyblog_2/">（dairy2ページ）</a></li>
@@ -111,29 +118,48 @@
   </ul>
 
   <script>
-    const secretDot = document.getElementById("secretDot");
-    const container = document.getElementById("please-message");
+    const trigger = document.getElementById("secretTrigger");
+    const container = document.getElementById("emma-message");
 
-    function handleClick(event) {
-      event.preventDefault();
-      if (container.childElementCount === 0) {
-        const text = "Please...";
-        text.split("").forEach((char, index) => {
-          const span = document.createElement("span");
-          span.className = "letter";
-          span.style.animationDelay = `${index * 0.1}s`;
-          span.textContent = char;
-          container.appendChild(span);
-        });
+    function startMessage(e) {
+      e.preventDefault();
 
+      if (container.childElementCount > 0) return;
+
+      const messages = [
+        "もしこれを読んでいるなら",
+        "私はもういない",
+        "これは日記じゃない",
+        "お願い、最後まで読んで",
+        "最初は違和感だった",
+        "でも気のせいじゃなかった",
+        "見られてる",
+        "ずっと",
+        "逃げられなかった",
+        "このブログも安全じゃない",
+        "お願い",
+        "戻って",
+        "関わらないで",
+        "次は",
+        "あなた"
+      ];
+
+      messages.forEach((text, index) => {
         setTimeout(() => {
-          window.location.href = "https://hikari-hikaru.github.io/thanks/";
-        }, 2200);
-      }
+          const p = document.createElement("div");
+          p.className = "letter";
+          p.textContent = text;
+          container.appendChild(p);
+        }, index * 400);
+      });
+
+      setTimeout(() => {
+        window.location.href = "https://hikari-hikaru.github.io/thanks/";
+      }, messages.length * 400 + 1500);
     }
 
-    secretDot.addEventListener("click", handleClick);
-    secretDot.addEventListener("touchstart", handleClick);
+    trigger.addEventListener("click", startMessage);
+    trigger.addEventListener("touchstart", startMessage);
   </script>
 </body>
 </html>
